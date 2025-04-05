@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESO Mobile - Virtual Mobile Network Operator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        header {
+            background-color: #FFCC00; /* ESO Yellow */
+            color: #212121; /* Dark Text */
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        header img {
+            width: 40px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        section {
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin: 1rem 0;
+        }
+        input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="tel"] {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #212121; /* ESO Black */
+            color: #FFCC00; /* ESO Yellow */
+            padding: 1rem 2rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background-color: #FFB300; /* Darker Yellow */
+        }
+        #userDashboard {
+            display: none;
+        }
+        .user-info {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .user-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        .user-info p {
+            font-size: 1.1rem;
+        }
+        .account-plan, .usage-info, .recent-transactions {
+            margin-bottom: 2rem;
+        }
+        .account-plan, .usage-info {
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+        .account-plan h4, .usage-info h4, .recent-transactions h4 {
+            margin-top: 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .transaction-table th, .transaction-table td {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .transaction-table th {
+            background-color: #FFCC00; /* ESO Yellow */
+            color: white;
+        }
+        .button-group {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-group button {
+            width: 48%;
+        }
+        .message-section, .call-section {
+            margin-top: 2rem;
+        }
+        #simRegistrationForm, #walletActivationForm, #makeCallForm, #balanceTopUpForm, #loanForm, #messageForm {
+            display: block;
+        }
+        .header-btn {
+            background-color: #212121; /* Dark Text */
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .header-btn:hover {
+            background-color: #333; /* Darker Color */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Eagle_logo.png" alt="ESO Mobile Logo">
+    <h1>ESO Mobile - Virtual Mobile Network Operator</h1>
+</header>
+
+<section class="container">
+    <!-- User Registration Form -->
+    <div id="registerForm">
+        <h2>User Registration</h2>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        <button id="registerButton">Register</button>
+    </div>
+    
+    <!-- User Dashboard -->
+    <div id="userDashboard" style="display: none;">
+        <h2>Welcome to Your ESO Mobile Dashboard</h2>
+
+        <!-- User Info -->
+        <div class="user-info">
+            <h3>Account Details</h3>
+            <p id="userName"></p>
+            <p id="userEmail"></p>
+            <p id="userMobileNumber"></p>
+        </div>
+
+        <!-- SIM Registration Section -->
+        <div id="simRegistrationForm">
+            <h4>Register for a SIM Card</h4>
+            <button id="registerSimButton">Register for SIM</button>
+        </div>
+
+        <!-- Mobile Wallet Activation -->
+        <div id="walletActivationForm">
+            <h4>Activate Mobile Wallet</h4>
+            <button id="activateWalletButton">Activate Wallet</button>
+        </div>
+
+        <!-- Balance Top-up -->
+        <div id="balanceTopUpForm">
+            <h4>Top-up Balance</h4>
+            <div class="form-group">
+                <label for="topUpAmount">Enter Amount to Top-up:</label>
+                <input type="number" id="topUpAmount" placeholder="Enter amount">
+            </div>
+            <button id="topUpButton">Top-up</button>
+        </div>
+
+        <!-- Loan and Airtime Borrowing -->
+        <div id="loanForm">
+            <h4>Borrow Airtime/Data/Loan</h4>
+            <button id="borrowButton">Borrow</button>
+        </div>
+
+        <!-- Make a Call -->
+        <div class="call-section" id="makeCallForm">
+            <h4>Make a Call</h4>
+            <div class="form-group">
+                <label for="callNumber">Enter Phone Number:</label>
+                <input type="tel" id="callNumber" placeholder="Enter number to call">
+            </div>
+            <button id="makeCallButton">Call</button>
+        </div>
+
+        <!-- Message Section -->
+        <div class="message-section" id="messageForm">
+            <h4>Send a Message</h4>
+            <div class="form-group">
+                <label for="messageNumber">Enter Phone Number:</label>
+                <input type="tel" id="messageNumber" placeholder="Enter recipient number">
+            </div>
+            <div class="form-group">
+                <label for="messageContent">Message:</label>
+                <input type="text" id="messageContent" placeholder="Enter your message">
+            </div>
+            <button id="sendMessageButton">Send Message</button>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="recent-transactions">
+            <h4>Recent Transactions</h4>
+            <table class="transaction-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Transaction ID</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025-04-05</td>
+                        <td>#TX12345</td>
+                        <td>.99</td>
+                        <td>Paid</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button id="paymentButton">Make Payment</button>
+            <button id="logoutButton">Logout</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Handle User Registration
+    document.getElementById('registerButton').addEventListener('click', function() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Generate a more realistic USA mobile number (e.g., +1 (XXX) XXX-XXXX format)
+        const mobileNumber = '+1 (' + Math.floor(Math.random() * 900 + 100) + ') ' +
+            Math.floor(Math.random() * 900 + 100) + '-' + Math.floor(Math.random() * 9000 + 1000);
+        
+        // Store user info in localStorage for persistence (this can be expanded to save other user data)
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userMobileNumber', mobileNumber);
+
+        // Hide the registration form and show the user dashboard
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('userDashboard').style.display = 'block';
+
+        // Populate the dashboard with the stored user info
+        document.getElementById('userName').textContent = `Name: `;
+        document.getElementById('userEmail').textContent = `Email: `;
+        document.getElementById('userMobileNumber').textContent = `Mobile Number: `;
+    });
+
+    // Handle logout functionality
+    document.getElementById('logoutButton').addEventListener('click', function() {
+        // Clear localStorage and redirect to the registration form
+        localStorage.clear();
+        document.getElementById('registerForm').style.display = 'block';
+        document.getElementById('userDashboard').style.display = 'none';
+    });
+
+    // Simulate making a call
+    document.getElementById('makeCallButton').addEventListener('click', function() {
+        const callNumber = document.getElementById('callNumber').value;
+        alert(`Calling ...`);
+    });
+
+    // Simulate sending a message
+    document.getElementById('sendMessageButton').addEventListener('click', function() {
+        const messageNumber = document.getElementById('messageNumber').value;
+        const messageContent = document.getElementById('messageContent').value;
+        alert(`Sending message to : `);
+    });
+</script>
+
+</body>
+</html>
